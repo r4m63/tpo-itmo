@@ -1,19 +1,14 @@
 package ru.itmo.qa.lab2.function;
 
-import lombok.Getter;
-
 import java.math.BigDecimal;
 import java.util.Objects;
 
-@Getter
-public abstract class AbstractFunction implements FunctionRule {
-  private static final int MAX_ITERATIONS = 1000;
-
-  protected final int seriesLength;
-
-  protected AbstractFunction() {
-    this.seriesLength = MAX_ITERATIONS;
+public abstract class AbstractFunction {
+  public String getName() {
+    return getClass().getSimpleName();
   }
+
+  public abstract BigDecimal calculate(final BigDecimal x, final BigDecimal precision);
 
   protected void isValid(final BigDecimal x, final BigDecimal precision) {
     Objects.requireNonNull(x, "Аргумент не должен быть null");

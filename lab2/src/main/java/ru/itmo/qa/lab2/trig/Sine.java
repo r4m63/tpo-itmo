@@ -8,11 +8,6 @@ import java.math.MathContext;
 import java.math.RoundingMode;
 
 public class Sine extends AbstractFunction {
-
-  public Sine() {
-    super();
-  }
-
   @Override
   public BigDecimal calculate(BigDecimal x, BigDecimal precision) throws ArithmeticException {
     isValid(x, precision);

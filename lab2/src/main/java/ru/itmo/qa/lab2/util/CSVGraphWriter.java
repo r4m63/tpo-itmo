@@ -1,7 +1,5 @@
 package ru.itmo.qa.lab2.util;
 
-import lombok.Getter;
-import lombok.SneakyThrows;
 import ru.itmo.qa.lab2.function.AbstractFunction;
 
 import java.io.BufferedWriter;
@@ -9,17 +7,13 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.util.Locale;
-
-import static java.lang.String.format;
 
 public class CSVGraphWriter {
   private final BufferedWriter writer;
   private final AbstractFunction function;
-  @Getter
   private final String filePath;
 
-  public CSVGraphWriter(AbstractFunction function, String outputDir) {
+  public CSVGraphWriter(AbstractFunction function, String outputDir) throws IOException {
     this.function = function;
     this.filePath = getFilePath(outputDir, function);
     this.writer = createWriter();
@@ -31,12 +25,18 @@ public class CSVGraphWriter {
     this.writer = writer;
   }
 
-  private String getFilePath(String outputDir, AbstractFunction function) {
-    return outputDir + function.getClass().getSimpleName() + ".csv";
+  public String getFilePath() {
+    return filePath;
   }
 
-  @SneakyThrows(IOException.class)
-  private BufferedWriter createWriter() {
+  private String getFilePath(String outputDir, AbstractFunction function) {
+    final String functionName = function.getName() == null || function.getName().isBlank()
+        ? function.getClass().getSimpleName()
+        : function.getName();
+    return outputDir + functionName + ".csv";
+  }
+
+  private BufferedWriter createWriter() throws IOException {
     File file = new File(filePath);
     file.getParentFile().mkdirs();
     if (file.exists()) {
@@ -47,8 +47,9 @@ public class CSVGraphWriter {
     }
   }
 
-  @SneakyThrows(IOException.class)
-  public void write(BigDecimal x1, BigDecimal x2, BigDecimal d, BigDecimal precision) {
+  public void write(BigDecimal x1, BigDecimal x2, BigDecimal d, BigDecimal precision) throws IOException {
+    validateRange(x1, x2, d, precision);
+
     try {
       writer.write("x,y");
       writer.newLine();
@@ -56,7 +57,10 @@ public class CSVGraphWriter {
         try {
           BigDecimal y = function.calculate(i, precision);
           if (y != null) {
-            writer.write(format(Locale.ENGLISH, "%f,%f%n", i.doubleValue(), y.doubleValue()));
+            writer.write(toCsvValue(i));
+            writer.write(",");
+            writer.write(toCsvValue(y));
+            writer.newLine();
           } else {
             writer.newLine();
           }
@@ -67,5 +71,21 @@ public class CSVGraphWriter {
     } finally {
       writer.flush();
     }
+  }
+
+  private void validateRange(BigDecimal x1, BigDecimal x2, BigDecimal step, BigDecimal precision) {
+    if (x1 == null || x2 == null || step == null || precision == null) {
+      throw new IllegalArgumentException("Параметры диапазона и точности не должны быть null");
+    }
+    if (step.compareTo(BigDecimal.ZERO) <= 0) {
+      throw new IllegalArgumentException("Шаг должен быть больше нуля");
+    }
+    if (x1.compareTo(x2) > 0) {
+      throw new IllegalArgumentException("Начало диапазона должно быть не больше конца");
+    }
+  }
+
+  private String toCsvValue(BigDecimal value) {
+    return value.stripTrailingZeros().toPlainString();
   }
 }

@@ -9,15 +9,13 @@ import static java.math.RoundingMode.HALF_EVEN;
 
 public class Cosecant extends AbstractFunction {
 
-  private final Sine sine;
+  private final AbstractFunction sine;
 
   public Cosecant() {
-    super();
     this.sine = new Sine();
   }
 
-  public Cosecant(Sine sine) {
-    super();
+  public Cosecant(AbstractFunction sine) {
     this.sine = sine;
   }
 
