@@ -23,7 +23,7 @@ import ru.itmo.qa.lab2.trig.Sine;
 
 // Проверяет, что cosecant корректно интегрируется с зависимостью Sine:
 // вызывает ее при вычислении и правильно собирает итоговый результат.
-@ExtendWith(MockitoExtension.class) // перед запуском теста создай и инициализируй @Mock и @Spy
+@ExtendWith(MockitoExtension.class)
 class CosecantIntegrationTest {
 
     private static final BigDecimal PRECISION = new BigDecimal("0.0000001");
