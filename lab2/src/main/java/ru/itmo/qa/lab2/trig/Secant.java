@@ -9,15 +9,13 @@ import static java.math.RoundingMode.HALF_EVEN;
 
 public class Secant extends AbstractFunction {
 
-  private final Cosine cosine;
+  private final AbstractFunction cosine;
 
   public Secant() {
-    super();
     this.cosine = new Cosine();
   }
 
-  public Secant(final Cosine cosine) {
-    super();
+  public Secant(final AbstractFunction cosine) {
     this.cosine = cosine;
   }
 

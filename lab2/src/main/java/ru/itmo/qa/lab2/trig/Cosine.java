@@ -10,15 +10,13 @@ import static java.math.RoundingMode.HALF_EVEN;
 
 public class Cosine extends AbstractFunction {
 
-  private final Sine sine;
+  private final AbstractFunction sine;
 
   public Cosine() {
-    super();
     this.sine = new Sine();
   }
 
-  public Cosine(Sine sine) {
-    super();
+  public Cosine(AbstractFunction sine) {
     this.sine = sine;
   }
 
