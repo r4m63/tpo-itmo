@@ -1,0 +1,3 @@
+./gradlew :lab3:chromeUiTest -Dlab3.headless=false
+
+lab3/build/reports/tests/chromeUiTest/index.html

@@ -1,0 +1,84 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+skinparam actorStyle awesome
+
+actor "Гость" as Guest
+actor "Авторизованный пользователь" as User
+
+User --|> Guest
+
+rectangle "Subscribe.ru\nСлужба бесплатных почтовых рассылок" {
+  usecase "UC-01\nПросмотреть\nглавную страницу" as UC01
+  usecase "UC-02\nОткрыть каталог\nвыпусков" as UC02
+  usecase "UC-03\nОткрыть каталог\nгрупп" as UC03
+  usecase "UC-04\nОткрыть карточку\nвыпуска" as UC04
+  usecase "UC-05\nОткрыть карточку\nгруппы" as UC05
+  usecase "UC-06\nНачать\nрегистрацию" as UC06
+  usecase "UC-07\nВыполнить вход" as UC07
+  usecase "UC-08\nИнициировать\nподписку" as UC08
+  usecase "UC-09\nПодтвердить доступ\nк подписке через\nавторизацию/регистрацию" as UC09
+  usecase "UC-10\nПросматривать свои\nподписки" as UC10
+  usecase "UC-11\nУправлять\nподписками" as UC11
+}
+
+Guest --> UC01
+Guest --> UC02
+Guest --> UC03
+Guest --> UC04
+Guest --> UC05
+Guest --> UC06
+Guest --> UC07
+Guest --> UC08
+
+User --> UC10
+User --> UC11
+
+UC02 ..> UC04 : <<include>>
+UC03 ..> UC05 : <<include>>
+UC08 ..> UC09 : <<include>>
+UC09 ..> UC07 : <<extend>>
+UC09 ..> UC06 : <<extend>>
+UC10 ..> UC11 : <<extend>>
+
+note bottom of UC01
+Тестируется в lab3:
+- загрузка публичной главной страницы
+- наличие основных разделов
+end note
+
+note bottom of UC02
+Тестируется в lab3:
+- переход в каталог выпусков
+- наличие карточек выпусков
+end note
+
+note bottom of UC03
+Тестируется в lab3:
+- переход в каталог групп
+- доступность карточек групп
+end note
+
+note bottom of UC04
+Тестируется в lab3:
+- открытие карточки выпуска
+- доступность без авторизации
+end note
+
+note bottom of UC05
+Тестируется в lab3:
+- открытие карточки группы
+- наличие заголовка группы
+end note
+
+note bottom of UC06
+Тестируется в lab3:
+- старт регистрационного потока
+end note
+
+note bottom of UC08
+Тестируется в lab3:
+- старт потока подписки
+- требование авторизации/регистрации
+end note
+@enduml

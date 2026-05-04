@@ -1,0 +1,74 @@
+plugins {
+    id 'lab1.java-application-conventions'
+}
+
+dependencies {
+    testImplementation 'org.seleniumhq.selenium:selenium-java:4.42.0'
+}
+
+test {
+    useJUnitPlatform {
+        excludeTags 'ui'
+    }
+}
+
+tasks.register('uiTest', Test) {
+    description = 'Runs Selenium UI tests for Subscribe.ru in the configured browsers.'
+    group = 'verification'
+
+    testClassesDirs = sourceSets.test.output.classesDirs
+    classpath = sourceSets.test.runtimeClasspath
+
+    useJUnitPlatform {
+        includeTags 'ui'
+    }
+
+    shouldRunAfter test
+
+    systemProperty 'lab3.browser', System.getProperty('lab3.browser', 'all')
+    systemProperty 'lab3.baseUrl', System.getProperty('lab3.baseUrl', 'https://subscribe.ru/')
+    systemProperty 'lab3.headless', System.getProperty('lab3.headless', 'true')
+    systemProperty 'lab3.timeoutSeconds', System.getProperty('lab3.timeoutSeconds', '15')
+}
+
+tasks.register('chromeUiTest', Test) {
+    description = 'Runs Selenium UI tests in Chrome.'
+    group = 'verification'
+
+    testClassesDirs = sourceSets.test.output.classesDirs
+    classpath = sourceSets.test.runtimeClasspath
+
+    useJUnitPlatform {
+        includeTags 'ui'
+    }
+
+    shouldRunAfter test
+
+    systemProperty 'lab3.browser', 'chrome'
+    systemProperty 'lab3.baseUrl', System.getProperty('lab3.baseUrl', 'https://subscribe.ru/')
+    systemProperty 'lab3.headless', System.getProperty('lab3.headless', 'true')
+    systemProperty 'lab3.timeoutSeconds', System.getProperty('lab3.timeoutSeconds', '15')
+}
+
+tasks.register('firefoxUiTest', Test) {
+    description = 'Runs Selenium UI tests in Firefox.'
+    group = 'verification'
+
+    testClassesDirs = sourceSets.test.output.classesDirs
+    classpath = sourceSets.test.runtimeClasspath
+
+    useJUnitPlatform {
+        includeTags 'ui'
+    }
+
+    shouldRunAfter test
+
+    systemProperty 'lab3.browser', 'firefox'
+    systemProperty 'lab3.baseUrl', System.getProperty('lab3.baseUrl', 'https://subscribe.ru/')
+    systemProperty 'lab3.headless', System.getProperty('lab3.headless', 'true')
+    systemProperty 'lab3.timeoutSeconds', System.getProperty('lab3.timeoutSeconds', '15')
+}
+
+application {
+    mainClass = 'ru.itmo.qa.lab3.Main'
+}

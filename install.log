@@ -1,0 +1,9 @@
+[12:43:33 2026-05-03] FETCHING Version 2.43.2
+[12:43:33 2026-05-03] CREATING /Users/ramil/.spicetify
+[12:43:33 2026-05-03] DOWNLOADING https://github.com/spicetify/cli/releases/download/v2.43.2/spicetify-2.43.2-darwin-arm64.tar.gz
+[12:43:36 2026-05-03] EXTRACTING /Users/ramil/.spicetify/spicetify.tar.gz
+[12:43:36 2026-05-03] SETTING EXECUTABLE PERMISSIONS TO /Users/ramil/.spicetify/spicetify
+[12:43:36 2026-05-03] REMOVING /Users/ramil/.spicetify/spicetify.tar.gz
+[12:43:36 2026-05-03] APPENDING /Users/ramil/.spicetify to PATH in /Users/ramil/.zshrc
+[12:43:36 2026-05-03] spicetify v2.43.2 was installed successfully to /Users/ramil/.spicetify
+[12:43:36 2026-05-03] Run 'spicetify --help' to get started
