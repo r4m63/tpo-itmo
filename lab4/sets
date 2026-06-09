@@ -1,0 +1,18 @@
+ssh -L 8079:stload.se.ifmo.ru:8080 se
+
+
+# Все три нагрузочных, сравнение, рекомендация (≈3.5 мин)
+./gradlew :lab4:loadTestAll -PskipPreflight
+
+# Только одна конфигурация в нагрузочном
+./gradlew :lab4:loadTestConfig1 -PskipPreflight
+./gradlew :lab4:loadTestConfig2 -PskipPreflight
+./gradlew :lab4:loadTestConfig3 -PskipPreflight
+
+# Стресс по выбранной конфигурации (≈4.5 мин)
+./gradlew :lab4:stressTest -Pconfig=3 -PskipPreflight
+
+# Полный демо-сценарий: load + сравнение + stress в одном
+./gradlew :lab4:demo -Pconfig=3 -PskipPreflight
+
+-PskipPreflight отключает проверку прямого доступа к stload.se.ifmo.ru (нужен потому, что ты ходишь через ssh-туннель).

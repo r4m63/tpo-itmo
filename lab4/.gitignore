@@ -1,0 +1,18 @@
+# Сырые результаты JMeter, перегенерируемы прогоном тестов
+jmeter/results/
+jmeter/reports/
+
+# Реальные значения token/user, секрет варианта
+jmeter/env.properties
+
+# Сгенерированный отчёт
+docs/report.docx
+
+# Виртуальные окружения и кеши
+.venv/
+__pycache__/
+*.pyc
+
+# Build-артефакты
+build/
+*.log
