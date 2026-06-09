@@ -1,0 +1,174 @@
+// Lab 4: JMeter load and stress testing.
+// Каждая таска: (1) валидирует доступ к серверу, (2) запускает JMeter в CLI-режиме (-n),
+// (3) печатает в терминал готовый разбор результатов через bin/summarize.py.
+// Демонстрация = открыть терминал и прогнать таски, никаких ручных шагов.
+
+// JMeter ищется в порядке: -PjmeterHome -> $JMETER_HOME -> `which jmeter` (PATH).
+// Резолвится лениво в doFirst, чтобы `./gradlew :lab4:tasks` работало даже без JMeter.
+def resolveJmeterBin = { ->
+    def home = project.findProperty('jmeterHome') ?: System.getenv('JMETER_HOME')
+    if (home) {
+        def f = file("$home/bin/jmeter")
+        if (!f.exists()) {
+            throw new GradleException("JMeter не найден по пути $f. Проверь JMETER_HOME / -PjmeterHome=...")
+        }
+        return f.absolutePath
+    }
+    def proc = ['which', 'jmeter'].execute()
+    proc.waitFor()
+    def path = proc.in.text.trim()
+    if (proc.exitValue() == 0 && path) {
+        return path
+    }
+    throw new GradleException("JMeter не найден. Установи через `brew install jmeter` или укажи -PjmeterHome=/path/to/jmeter")
+}
+
+def envProperties = layout.projectDirectory.file('jmeter/env.properties')
+def jmeterPlans   = layout.projectDirectory.dir('jmeter/plans')
+def resultsDir    = layout.projectDirectory.dir('jmeter/results')
+def reportsDir    = layout.projectDirectory.dir('jmeter/reports')
+def summarizeBin  = layout.projectDirectory.file('bin/summarize.py')
+
+// Цены конфигураций из варианта.
+def configPrices = [1: 4500, 2: 7300, 3: 9300]
+
+// Sanity-check VPN/туннеля. Можно отключить через -PskipPreflight.
+def runPreflight = {
+    if (project.hasProperty('skipPreflight')) {
+        return
+    }
+    def url = 'http://stload.se.ifmo.ru:8080'
+    def proc = ['curl', '-fsS', '--max-time', '5', '-o', '/dev/null', '-w', '%{http_code}', url].execute()
+    proc.waitFor()
+    def code = proc.in.text.trim()
+    if (proc.exitValue() != 0 && code != '403') {
+        throw new GradleException("Сервер ${url} недоступен (curl exit ${proc.exitValue()}, http ${code}). Подключи VPN/туннель или передай -PskipPreflight.")
+    }
+}
+
+configPrices.each { cfg, price ->
+    tasks.register("loadTestConfig${cfg}", Exec) {
+        group = 'verification'
+        description = "Load test config=${cfg} (\$${price}): 9 users × 20 req/min, ~70 s, prints PASS/FAIL"
+
+        def jtl     = resultsDir.file("load/config${cfg}.jtl")
+        def htmlDir = reportsDir.dir("load-config${cfg}")
+
+        doFirst {
+            runPreflight()
+            if (!envProperties.asFile.exists()) {
+                throw new GradleException("Не найден ${envProperties.asFile.absolutePath}. Скопируй env.properties.example в env.properties.")
+            }
+            println ""
+            println "=" * 64
+            println "  LOAD TEST  config=${cfg}  \$${price}"
+            println "  9 users × 20 req/min  ·  SLO 720 ms  ·  ~70 s"
+            println "=" * 64
+            jtl.asFile.parentFile.mkdirs()
+            jtl.asFile.delete()
+            project.delete(htmlDir)
+            htmlDir.asFile.mkdirs()
+            commandLine resolveJmeterBin(),
+                    '-n',
+                    '-t', jmeterPlans.file('load-test.jmx').asFile.absolutePath,
+                    '-q', envProperties.asFile.absolutePath,
+                    "-Jconfig=${cfg}",
+                    '-l', jtl.asFile.absolutePath,
+                    '-e', '-o', htmlDir.asFile.absolutePath
+        }
+
+        doLast {
+            println ""
+            println "-- Summary for config=${cfg} (\$${price}) " + ("-" * 30)
+            exec {
+                workingDir = projectDir
+                commandLine 'python3', summarizeBin.asFile.absolutePath, 'load', jtl.asFile.absolutePath
+            }
+            println ""
+            println "HTML report: ${htmlDir.asFile.absolutePath}/index.html"
+            println "Raw .jtl:    ${jtl.asFile.absolutePath}"
+        }
+    }
+}
+
+tasks.register('loadTestAll') {
+    group = 'verification'
+    description = 'Run load tests against all 3 configs, then print comparison + cheapest-config recommendation'
+    dependsOn 'loadTestConfig1', 'loadTestConfig2', 'loadTestConfig3'
+
+    doLast {
+        println ""
+        println "=" * 64
+        println "  COMPARISON  ·  variant SLO 720 ms  ·  pick cheapest PASS"
+        println "=" * 64
+        exec {
+            workingDir = projectDir
+            def args = ['python3', summarizeBin.asFile.absolutePath, 'compare']
+            configPrices.each { cfg, price ->
+                args += "${price}:${resultsDir.file("load/config${cfg}.jtl").asFile.absolutePath}".toString()
+            }
+            commandLine args
+        }
+        println ""
+        println "Next: ./gradlew :lab4:stressTest -Pconfig=N  (N = recommended config above)"
+    }
+}
+
+tasks.register('stressTest', Exec) {
+    group = 'verification'
+    description = 'Stress-test chosen config (-Pconfig=N, default 2): 9→80 users in 9 steps of 30 s, ~4.5 min, prints response time per step + breaking point'
+
+    def cfg   = (project.findProperty('config') ?: '2').toString()
+    def price = configPrices[cfg.toInteger()]
+    def jtl     = resultsDir.file("stress/stress-config${cfg}.jtl")
+    def htmlDir = reportsDir.dir('stress')
+
+    doFirst {
+        runPreflight()
+        if (!envProperties.asFile.exists()) {
+            throw new GradleException("Не найден ${envProperties.asFile.absolutePath}. Скопируй env.properties.example в env.properties.")
+        }
+        println ""
+        println "=" * 64
+        println "  STRESS TEST  config=${cfg}  \$${price}"
+        println "  9 → 12 → 15 → 20 → 25 → 30 → 45 → 60 → 80 users  ·  SLO 720 ms  ·  ~4.5 min"
+        println "=" * 64
+        jtl.asFile.parentFile.mkdirs()
+        jtl.asFile.delete()
+        project.delete(htmlDir)
+        htmlDir.asFile.mkdirs()
+        commandLine resolveJmeterBin(),
+                '-n',
+                '-t', jmeterPlans.file('stress-test.jmx').asFile.absolutePath,
+                '-q', envProperties.asFile.absolutePath,
+                "-Jconfig=${cfg}",
+                '-l', jtl.asFile.absolutePath,
+                '-e', '-o', htmlDir.asFile.absolutePath
+    }
+
+    doLast {
+        println ""
+        println "-- Response time vs users for config=${cfg} " + ("-" * 25)
+        exec {
+            workingDir = projectDir
+            commandLine 'python3', summarizeBin.asFile.absolutePath, 'stress', jtl.asFile.absolutePath
+        }
+        println ""
+        println "HTML report: ${htmlDir.asFile.absolutePath}/index.html"
+        println "Raw .jtl:    ${jtl.asFile.absolutePath}"
+    }
+}
+
+tasks.register('demo') {
+    group = 'verification'
+    description = 'Full demonstration: load test all 3 configs → comparison → stress test (-Pconfig=N for stress, default 2)'
+    dependsOn 'loadTestAll'
+    finalizedBy 'stressTest'
+}
+
+// JMeter-таски всегда запускаются заново: результат зависит от внешнего сервера.
+tasks.matching { it.name.startsWith('loadTest') || it.name == 'stressTest' }.configureEach {
+    if (it instanceof Exec) {
+        outputs.upToDateWhen { false }
+    }
+}

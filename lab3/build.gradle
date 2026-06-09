@@ -29,6 +29,8 @@ tasks.register('uiTest', Test) {
     systemProperty 'lab3.baseUrl', System.getProperty('lab3.baseUrl', 'https://subscribe.ru/')
     systemProperty 'lab3.headless', System.getProperty('lab3.headless', 'true')
     systemProperty 'lab3.timeoutSeconds', System.getProperty('lab3.timeoutSeconds', '15')
+
+    outputs.upToDateWhen { false }
 }
 
 tasks.register('chromeUiTest', Test) {
@@ -48,6 +50,8 @@ tasks.register('chromeUiTest', Test) {
     systemProperty 'lab3.baseUrl', System.getProperty('lab3.baseUrl', 'https://subscribe.ru/')
     systemProperty 'lab3.headless', System.getProperty('lab3.headless', 'true')
     systemProperty 'lab3.timeoutSeconds', System.getProperty('lab3.timeoutSeconds', '15')
+
+    outputs.upToDateWhen { false }
 }
 
 tasks.register('firefoxUiTest', Test) {
@@ -67,6 +71,8 @@ tasks.register('firefoxUiTest', Test) {
     systemProperty 'lab3.baseUrl', System.getProperty('lab3.baseUrl', 'https://subscribe.ru/')
     systemProperty 'lab3.headless', System.getProperty('lab3.headless', 'true')
     systemProperty 'lab3.timeoutSeconds', System.getProperty('lab3.timeoutSeconds', '15')
+
+    outputs.upToDateWhen { false }
 }
 
 application {

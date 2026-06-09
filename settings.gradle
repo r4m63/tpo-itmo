@@ -7,7 +7,7 @@ plugins {
 }
 
 rootProject.name = 'tpo-itmo'
-include('task1', 'task2', 'task3', 'lab2', 'lab3')
+include('task1', 'task2', 'task3', 'lab2', 'lab3', 'lab4')
 
 project(':task1').projectDir = file('lab1/task1')
 project(':task2').projectDir = file('lab1/task2')

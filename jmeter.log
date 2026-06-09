@@ -1,0 +1,106 @@
+2026-05-17 22:21:04,526 INFO o.a.j.u.JMeterUtils: Setting Locale to en_EN
+2026-05-17 22:21:04,536 INFO o.a.j.JMeter: Loading user properties from: /opt/homebrew/Cellar/jmeter/5.6.3/libexec/bin/user.properties
+2026-05-17 22:21:04,537 INFO o.a.j.JMeter: Loading system properties from: /opt/homebrew/Cellar/jmeter/5.6.3/libexec/bin/system.properties
+2026-05-17 22:21:04,539 INFO o.a.j.JMeter: Copyright (c) 1998-2024 The Apache Software Foundation
+2026-05-17 22:21:04,539 INFO o.a.j.JMeter: Version 5.6.3
+2026-05-17 22:21:04,539 INFO o.a.j.JMeter: java.version=21.0.11
+2026-05-17 22:21:04,540 INFO o.a.j.JMeter: java.vm.name=OpenJDK 64-Bit Server VM
+2026-05-17 22:21:04,540 INFO o.a.j.JMeter: os.name=Mac OS X
+2026-05-17 22:21:04,540 INFO o.a.j.JMeter: os.arch=aarch64
+2026-05-17 22:21:04,540 INFO o.a.j.JMeter: os.version=26.4.1
+2026-05-17 22:21:04,540 INFO o.a.j.JMeter: file.encoding=UTF-8
+2026-05-17 22:21:04,540 INFO o.a.j.JMeter: java.awt.headless=null
+2026-05-17 22:21:04,540 INFO o.a.j.JMeter: Max memory     =1073741824
+2026-05-17 22:21:04,540 INFO o.a.j.JMeter: Available Processors =11
+2026-05-17 22:21:04,544 INFO o.a.j.JMeter: Default Locale=English (EN)
+2026-05-17 22:21:04,544 INFO o.a.j.JMeter: JMeter  Locale=English (EN)
+2026-05-17 22:21:04,545 INFO o.a.j.JMeter: JMeterHome=/opt/homebrew/Cellar/jmeter/5.6.3/libexec
+2026-05-17 22:21:04,545 INFO o.a.j.JMeter: user.dir  =/Users/ramil/Projects/tpo-itmo
+2026-05-17 22:21:04,545 INFO o.a.j.JMeter: PWD       =/Users/ramil/Projects/tpo-itmo
+2026-05-17 22:21:04,548 INFO o.a.j.JMeter: IP: 127.0.0.1 Name: MacBook-Pro---Ramil.local FullName: localhost
+2026-05-17 22:21:04,553 INFO o.a.j.JMeter: Loaded icon properties from org/apache/jmeter/images/icon.properties
+2026-05-17 22:21:04,833 INFO o.a.j.JMeterGuiLauncher: Setting LAF to: com.github.weisj.darklaf.DarkLaf:com.github.weisj.darklaf.theme.DarculaTheme
+2026-05-17 22:21:05,542 INFO o.a.j.r.ClassFinder: Will scan jar /opt/homebrew/Cellar/jmeter/5.6.3/libexec/lib/ext/jmeter-plugins-manager-1.9.jar with filter ExtendsClassFilter [parents=[interface org.apache.jmeter.gui.action.Command], inner=false, contains=null, notContains=null]. Consider exposing JMeter plugins via META-INF/services, and add JMeter-Skip-Class-Scanning=true manifest attribute so JMeter can skip classfile scanning
+2026-05-17 22:21:05,597 INFO o.a.j.r.ClassFinder: Will scan jar /opt/homebrew/Cellar/jmeter/5.6.3/libexec/lib/ext/jmeter-plugins-manager-1.9.jar with filter ExtendsClassFilter [parents=[interface org.apache.jmeter.gui.plugin.MenuCreator], inner=false, contains=null, notContains=null]. Consider exposing JMeter plugins via META-INF/services, and add JMeter-Skip-Class-Scanning=true manifest attribute so JMeter can skip classfile scanning
+2026-05-17 22:21:05,618 INFO o.j.r.JARSourceHTTP: Using proxy 127.0.0.1:1082
+2026-05-17 22:21:05,620 INFO o.j.r.JARSourceHTTP: Using proxy 127.0.0.1:1082
+2026-05-17 22:21:05,652 INFO o.j.r.JARSourceHTTP: Found cached repo
+2026-05-17 22:21:05,738 INFO o.j.r.JARSourceHTTP: Using proxy 127.0.0.1:1082
+2026-05-17 22:21:05,738 INFO o.j.r.PluginManager: Plugins Status: [jpgc-plugins-manager=1.9, jmeter-core=5.6.3, jmeter-ftp=5.6.3, jmeter-http=5.6.3, jmeter-jdbc=5.6.3, jmeter-jms=5.6.3, jmeter-junit=5.6.3, jmeter-java=5.6.3, jmeter-ldap=5.6.3, jmeter-mail=5.6.3, jmeter-mongodb=5.6.3, jmeter-native=5.6.3, jmeter-tcp=5.6.3, jmeter-components=5.6.3]
+2026-05-17 22:21:05,739 INFO o.j.r.PluginManagerMenuItem: Plugins Manager has upgrades: [jpgc-plugins-manager]
+2026-05-17 22:36:05,057 INFO o.a.j.s.FileServer: Default base='/Users/ramil/Projects/tpo-itmo'
+2026-05-17 22:36:53,542 INFO o.a.j.g.a.Load: Loading file: /Users/ramil/Projects/tpo-itmo/lab4/jmeter/plans/load-test.jmx
+2026-05-17 22:36:53,543 INFO o.a.j.s.FileServer: Set new base='/Users/ramil/Projects/tpo-itmo/lab4/jmeter/plans'
+2026-05-17 22:36:53,625 INFO o.a.j.s.SaveService: Testplan (JMX) version: 2.2. Testlog (JTL) version: 2.2
+2026-05-17 22:36:53,629 INFO o.a.j.s.SaveService: Using SaveService properties version 5.0
+2026-05-17 22:36:53,629 INFO o.a.j.s.SaveService: Using SaveService properties file encoding UTF-8
+2026-05-17 22:36:53,630 INFO o.a.j.s.SaveService: Loading file: /Users/ramil/Projects/tpo-itmo/lab4/jmeter/plans/load-test.jmx
+2026-05-17 22:36:53,665 INFO o.a.j.p.h.c.CookieManager: Settings: Delete null: true Check: true Allow variable: true Save: false Prefix: COOKIE_
+2026-05-17 22:36:53,666 INFO o.a.j.p.h.c.CacheManager: Will only cache the following methods: [GET]
+2026-05-17 22:36:53,671 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/html is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2026-05-17 22:36:53,671 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for application/xhtml+xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2026-05-17 22:36:53,671 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for application/xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2026-05-17 22:36:53,672 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2026-05-17 22:36:53,672 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/vnd.wap.wml is org.apache.jmeter.protocol.http.parser.RegexpHTMLParser
+2026-05-17 22:36:53,672 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/css is org.apache.jmeter.protocol.http.parser.CssParser
+2026-05-17 22:36:53,688 WARN o.a.j.t.ConstantThroughputTimer: Could not convert calcMode=0 using Locale: 
+2026-05-17 22:36:53,812 INFO o.a.j.s.SampleResult: Note: Sample TimeStamps are START times
+2026-05-17 22:36:53,812 INFO o.a.j.s.SampleResult: sampleresult.default.encoding is set to UTF-8
+2026-05-17 22:36:53,812 INFO o.a.j.s.SampleResult: sampleresult.useNanoTime=true
+2026-05-17 22:36:53,812 INFO o.a.j.s.SampleResult: sampleresult.nanoThreadSleep=5000
+2026-05-17 22:36:53,851 INFO o.a.j.r.ClassFinder: Will scan jar /opt/homebrew/Cellar/jmeter/5.6.3/libexec/lib/ext/jmeter-plugins-manager-1.9.jar with filter ExtendsClassFilter [parents=[interface org.apache.jmeter.visualizers.ResultRenderer], inner=false, contains=null, notContains=null]. Consider exposing JMeter plugins via META-INF/services, and add JMeter-Skip-Class-Scanning=true manifest attribute so JMeter can skip classfile scanning
+2026-05-17 22:36:53,859 INFO o.a.j.r.ClassFinder: Will scan jar /opt/homebrew/Cellar/jmeter/5.6.3/libexec/lib/ext/jmeter-plugins-manager-1.9.jar with filter ExtendsClassFilter [parents=[interface org.apache.jmeter.visualizers.RequestView], inner=false, contains=null, notContains=null]. Consider exposing JMeter plugins via META-INF/services, and add JMeter-Skip-Class-Scanning=true manifest attribute so JMeter can skip classfile scanning
+2026-05-17 22:36:53,879 INFO o.a.j.s.FileServer: Set new base='/Users/ramil/Projects/tpo-itmo/lab4/jmeter/plans'
+2026-05-17 22:37:03,219 INFO o.a.j.e.StandardJMeterEngine: Running the test!
+2026-05-17 22:37:03,220 INFO o.a.j.s.SampleEvent: List of sample_variables: []
+2026-05-17 22:37:03,220 INFO o.a.j.s.SampleEvent: List of sample_variables: []
+2026-05-17 22:37:03,220 INFO o.a.j.e.u.CompoundVariable: Note: Function class names must contain the string: '.functions.'
+2026-05-17 22:37:03,220 INFO o.a.j.e.u.CompoundVariable: Note: Function class names must not contain the string: '.gui.'
+2026-05-17 22:37:03,239 INFO o.a.j.r.ClassFinder: Will scan jar /opt/homebrew/Cellar/jmeter/5.6.3/libexec/lib/ext/jmeter-plugins-manager-1.9.jar with filter ExtendsClassFilter [parents=[interface org.apache.jmeter.functions.Function], inner=false, contains=null, notContains=null]. Consider exposing JMeter plugins via META-INF/services, and add JMeter-Skip-Class-Scanning=true manifest attribute so JMeter can skip classfile scanning
+2026-05-17 22:37:03,244 INFO o.a.j.g.u.JMeterMenuBar: setRunning(true, *local*)
+2026-05-17 22:37:03,270 INFO o.a.j.e.StandardJMeterEngine: Starting ThreadGroup: 1 : Target Load (9 users)
+2026-05-17 22:37:03,270 INFO o.a.j.e.StandardJMeterEngine: Starting 9 threads for group Target Load (9 users).
+2026-05-17 22:37:03,270 INFO o.a.j.e.StandardJMeterEngine: Thread will continue on error
+2026-05-17 22:37:03,270 INFO o.a.j.t.ThreadGroup: Starting thread group... number=1 threads=9 ramp-up=10 delayedStart=false
+2026-05-17 22:37:03,272 INFO o.a.j.t.JMeterThread: Thread started: Target Load (9 users) 1-1
+2026-05-17 22:37:03,273 INFO o.a.j.t.ThreadGroup: Started thread group number 1
+2026-05-17 22:37:03,273 INFO o.a.j.e.StandardJMeterEngine: All thread groups have been started
+2026-05-17 22:37:03,278 INFO o.a.j.p.h.s.HTTPHCAbstractImpl: Local host = MacBook-Pro---Ramil.local
+2026-05-17 22:37:03,280 INFO o.a.j.p.h.s.HTTPHC4Impl: HTTP request retry count = 0
+2026-05-17 22:37:04,386 INFO o.a.j.t.JMeterThread: Thread started: Target Load (9 users) 1-2
+2026-05-17 22:37:05,497 INFO o.a.j.t.JMeterThread: Thread started: Target Load (9 users) 1-3
+2026-05-17 22:37:06,280 INFO o.a.j.u.JsseSSLManager: Using default SSL protocol: TLS
+2026-05-17 22:37:06,280 INFO o.a.j.u.JsseSSLManager: SSL session context: per-thread
+2026-05-17 22:37:06,604 INFO o.a.j.t.JMeterThread: Thread started: Target Load (9 users) 1-4
+2026-05-17 22:37:07,716 INFO o.a.j.t.JMeterThread: Thread started: Target Load (9 users) 1-5
+2026-05-17 22:37:08,828 INFO o.a.j.t.JMeterThread: Thread started: Target Load (9 users) 1-6
+2026-05-17 22:37:09,578 INFO o.a.j.g.a.Start: Stopping test
+2026-05-17 22:37:09,613 INFO o.a.j.t.JMeterThread: Stopping: Target Load (9 users) 1-8
+2026-05-17 22:37:09,613 INFO o.a.j.t.JMeterThread: Stopping: Target Load (9 users) 1-2
+2026-05-17 22:37:09,613 INFO o.a.j.t.JMeterThread: Stopping: Target Load (9 users) 1-5
+2026-05-17 22:37:09,613 INFO o.a.j.t.JMeterThread: Stopping: Target Load (9 users) 1-7
+2026-05-17 22:37:09,613 WARN o.a.j.t.JMeterThread: The delay timer was interrupted - probably did not wait as long as intended.
+2026-05-17 22:37:09,613 INFO o.a.j.t.JMeterThread: Stopping: Target Load (9 users) 1-1
+2026-05-17 22:37:09,613 INFO o.a.j.t.JMeterThread: Thread started: Target Load (9 users) 1-8
+2026-05-17 22:37:09,613 WARN o.a.j.t.JMeterThread: The delay timer was interrupted - probably did not wait as long as intended.
+2026-05-17 22:37:09,614 INFO o.a.j.t.JMeterThread: Stopping: Target Load (9 users) 1-3
+2026-05-17 22:37:09,614 INFO o.a.j.t.JMeterThread: Thread started: Target Load (9 users) 1-7
+2026-05-17 22:37:09,614 INFO o.a.j.t.JMeterThread: Stopping: Target Load (9 users) 1-4
+2026-05-17 22:37:09,614 WARN o.a.j.t.JMeterThread: The delay timer was interrupted - probably did not wait as long as intended.
+2026-05-17 22:37:09,614 WARN o.a.j.t.JMeterThread: The delay timer was interrupted - probably did not wait as long as intended.
+2026-05-17 22:37:09,614 INFO o.a.j.t.JMeterThread: Thread finished: Target Load (9 users) 1-8
+2026-05-17 22:37:09,614 WARN o.a.j.t.JMeterThread: Interrupting: Target Load (9 users) 1-4 sampler: GET / (config ${config})
+2026-05-17 22:37:09,614 INFO o.a.j.t.JMeterThread: Thread finished: Target Load (9 users) 1-7
+2026-05-17 22:37:09,614 INFO o.a.j.t.JMeterThread: Thread finished: Target Load (9 users) 1-2
+2026-05-17 22:37:09,614 INFO o.a.j.t.JMeterThread: Thread finished: Target Load (9 users) 1-5
+2026-05-17 22:37:09,614 INFO o.a.j.t.JMeterThread: Thread finished: Target Load (9 users) 1-3
+2026-05-17 22:37:09,614 INFO o.a.j.t.JMeterThread: Thread finished: Target Load (9 users) 1-1
+2026-05-17 22:37:09,617 INFO o.a.j.t.JMeterThread: Stopping: Target Load (9 users) 1-9
+2026-05-17 22:37:09,617 INFO o.a.j.t.JMeterThread: Stopping: Target Load (9 users) 1-6
+2026-05-17 22:37:09,617 WARN o.a.j.t.JMeterThread: The delay timer was interrupted - probably did not wait as long as intended.
+2026-05-17 22:37:09,617 INFO o.a.j.t.JMeterThread: Thread started: Target Load (9 users) 1-9
+2026-05-17 22:37:09,617 INFO o.a.j.t.JMeterThread: Thread finished: Target Load (9 users) 1-6
+2026-05-17 22:37:09,617 INFO o.a.j.t.JMeterThread: Thread finished: Target Load (9 users) 1-9
+2026-05-17 22:37:09,617 INFO o.a.j.t.JMeterThread: Thread finished: Target Load (9 users) 1-4
+2026-05-17 22:37:09,618 INFO o.a.j.e.StandardJMeterEngine: Notifying test listeners of end of test
+2026-05-17 22:37:09,618 INFO o.a.j.g.u.JMeterMenuBar: setRunning(false, *local*)
